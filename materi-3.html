@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 3: Membangun DApp | CampCoding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .step-card { border-left: 4px solid #10b981; }
+        .gradient-text { background: linear-gradient(135deg, #34d399, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="p-5 md:p-10">
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <div class="glass p-8 rounded-3xl mb-10">
+            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 3: Membangun DApp Pertama 🚀</h1>
+            <p class="text-slate-400 text-lg">DApp (Decentralized Application) adalah aplikasi yang interface-nya mirip website biasa, tapi "otaknya" ada di Blockchain.</p>
+        </div>
+
+        <div class="space-y-8">
+            <div class="glass p-8 rounded-2xl step-card">
+                <h2 class="text-2xl font-bold mb-4 text-emerald-400">1. Library Penting 🛠️</h2>
+                <p class="mb-4 text-slate-300 text-sm">Untuk menghubungkan Website ke Blockchain, kita butuh perantara:</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-slate-900 p-4 rounded-xl border border-white/5">
+                        <span class="text-white font-bold block mb-1">Ethers.js / Viem</span>
+                        <span class="text-xs text-slate-500">Library JavaScript untuk bicara dengan Smart Contract.</span>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-white/5">
+                        <span class="text-white font-bold block mb-1">Metamask</span>
+                        <span class="text-xs text-slate-500">Dompet digital yang bertindak sebagai "Kunci" akses.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-2xl border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400">2. Cara Kerja Koneksi 🔄</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">1</div>
+                        <p class="text-slate-300">User menekan tombol <strong>"Connect Wallet"</strong> di website.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">2</div>
+                        <p class="text-slate-300">Website meminta izin akses alamat wallet ke extension browser (Metamask).</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">3</div>
+                        <p class="text-slate-300">Setelah terhubung, Website bisa membaca data saldo atau mengirim transaksi ke Blockchain melalui provider.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center glass p-10 rounded-3xl border-2 border-emerald-500/20">
+            <h3 class="text-2xl font-bold mb-4 italic">🎉 Selamat! Kamu telah menyelesaikan kursus dasar.</h3>
+            <p class="text-slate-400 mb-8">Langkah selanjutnya adalah mempelajari framework **Next.js** dan library **Wagmi** untuk membuat DApp yang lebih canggih!</p>
+            <a href="index.html" class="bg-emerald-600 px-10 py-4 rounded-2xl font-bold hover:bg-emerald-500 transition inline-block">Selesai & Beranda</a>
+        </div>
+    </div>
+</body>
+</html>
