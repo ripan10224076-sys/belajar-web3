@@ -15,4 +15,4 @@ Untuk menghubungkan Website ke Blockchain, kita butuh perantara:
 ### Langkah Selanjutnya:
 Coba pelajari framework **Next.js** dan library **Wagmi** untuk membuat DApp yang lebih canggih!
 
-[<-- Kembali ke Modul 2](materi-2.md) | [Beranda](index.html)
+[<-- Kembali ke Modul 2](materi-2.md) | [SELESAI & AMBIL SERTIFIKAT](selesai.md)
