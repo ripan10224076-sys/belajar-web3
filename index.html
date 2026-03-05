@@ -6,7 +6,6 @@
     <title>Web3 Tech Academy | CampCoding</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Chart.js untuk Grafik Trading -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
@@ -52,7 +51,6 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Glassmorphism Card */
         .glass { 
             background: rgba(15, 23, 42, 0.4); 
             backdrop-filter: blur(16px); 
@@ -63,39 +61,16 @@
 
         .glass:hover {
             border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
         }
 
-        /* Gradient Text */
         .gradient-text { 
             background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            background-clip: text;
         }
 
-        /* Button Glow */
-        .btn-glow {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-glow::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn-glow:hover::after {
-            left: 100%;
-        }
-
-        /* Animasi Naik Turun (Floating Hero) */
         @keyframes floatHero {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
@@ -104,195 +79,161 @@
             animation: floatHero 5s ease-in-out infinite;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-
         /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
             z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
             align-items: center;
             justify-content: center;
         }
-        .modal-content {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 1rem;
-            padding: 2rem;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.3s ease-out;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .wallet-option {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-        .wallet-option:hover {
-            background-color: rgba(255,255,255,0.05);
-            border-color: #3b82f6;
-        }
-        .wallet-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
+        .modal.active { display: flex; }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white">
 
     <div id="coin-container"></div>
 
-    <!-- Navigation -->
     <nav class="sticky top-0 z-50 p-4 md:p-5 glass border-b border-white/5">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3 group cursor-pointer">
-                <div class="relative">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-                    <div class="relative bg-slate-900 p-2 rounded-lg">
-                        <i class="fas fa-cube text-blue-400 text-xl"></i>
-                    </div>
-                </div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-cube text-blue-400 text-2xl"></i>
                 <div class="flex flex-col">
-                    <h1 class="text-xl font-extrabold tracking-tight text-white">CampCoding</h1>
+                    <h1 class="text-xl font-extrabold text-white">CampCoding</h1>
                     <span class="text-xs text-blue-400 font-semibold tracking-wider">WEB3 ACADEMY</span>
                 </div>
             </div>
             
             <div class="hidden md:flex items-center gap-6">
-                <a href="#kurikulum" class="text-slate-400 hover:text-white transition text-sm font-medium">Kurikulum</a>
-                <a href="#market" class="text-slate-400 hover:text-white transition text-sm font-medium">Live Market</a>
-                <a href="#" class="text-slate-400 hover:text-white transition text-sm font-medium">Komunitas</a>
+                <a href="#kurikulum" class="text-slate-400 hover:text-white transition text-sm">Kurikulum</a>
+                <a href="#market" class="text-slate-400 hover:text-white transition text-sm">Live Market</a>
             </div>
 
-            <button id="connectBtn" class="btn-glow bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20">
+            <button onclick="toggleModal()" class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20">
                 <i class="fas fa-wallet"></i>
                 <span id="btnText">Connect Wallet</span>
             </button>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="max-w-7xl mx-auto text-center py-12 md:py-20 px-5 relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/20 blur-[100px] rounded-full -z-10"></div>
-
+    <header class="max-w-7xl mx-auto text-center py-16 px-5 relative">
         <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-300 text-sm font-semibold animate-pulse">
             <span class="w-2 h-2 rounded-full bg-green-400"></span>
             Batch 1: Pendaftaran Dibuka
         </div>
 
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight">
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
             Kuasai Masa Depan <br>
             <span class="gradient-text italic">Internet Desentralisasi</span>
         </h2>
         
-        <p class="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl mb-12 leading-relaxed">
-            Platform edukasi Web3 gratis dari <span class="text-white font-bold">CampCoding</span>. Pelajari Blockchain, Smart Contracts, dan DApps langsung dengan praktik nyata.
-        </p>
-
         <div class="flex flex-col md:flex-row justify-center gap-4 mb-20">
-            <a href="materi-1.html" class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-extrabold hover:bg-blue-50 hover:scale-105 transition shadow-xl flex items-center justify-center gap-2">
-                Mulai Belajar Sekarang
-                <i class="fas fa-arrow-right"></i>
+            <a href="materi-1.html" class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-extrabold hover:scale-105 transition shadow-xl">
+                Mulai Belajar Sekarang <i class="fas fa-arrow-right ml-2"></i>
             </a>
-            <a href="https://github.com/ripan10224076-sys/belajar-web3" target="_blank" class="glass px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition flex items-center justify-center gap-2 group">
-                <i class="fab fa-github text-xl group-hover:text-white transition"></i>
-                <span>Star di GitHub</span>
+            <a href="https://github.com/ripan10224076-sys/belajar-web3" target="_blank" class="glass px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+                <i class="fab fa-github mr-2"></i> Star di GitHub
             </a>
         </div>
 
-        <div class="relative w-full max-w-4xl mx-auto">
-            <img src="https://cdn-icons-png.flaticon.com/512/2679/2679767.png" 
-                 alt="Web3 Illustration" 
-                 class="w-64 md:w-80 mx-auto drop-shadow-2xl animate-float-hero">
-        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/2679/2679767.png" 
+             alt="Web3 Illustration" 
+             class="w-64 md:w-80 mx-auto drop-shadow-2xl animate-float-hero">
     </header>
 
-    <!-- Live Market Section (Chart) -->
     <section id="market" class="max-w-7xl mx-auto px-5 py-16">
-        <div class="glass rounded-3xl p-8 border border-white/10">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Live Market Data</h3>
-                    <p class="text-slate-400 text-sm">Real-time tracking untuk pembelajaran analisis teknikal.</p>
-                </div>
-                <div class="flex gap-4 mt-4 md:mt-0">
-                    <div class="text-center">
-                        <div class="text-xs text-slate-400">Bitcoin</div>
-                        <div class="text-lg font-bold text-green-400">$42,350 <i class="fas fa-caret-up text-xs"></i></div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-xs text-slate-400">Ethereum</div>
-                        <div class="text-lg font-bold text-green-400">$2,280 <i class="fas fa-caret-up text-xs"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="relative h-64 md:h-80 w-full">
+        <div class="glass rounded-3xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-2">Live Market Data</h3>
+            <p class="text-slate-400 text-sm mb-8">Data simulasi untuk analisis teknikal.</p>
+            <div class="h-64 md:h-80">
                 <canvas id="cryptoChart"></canvas>
             </div>
         </div>
     </section>
 
-    <!-- Kurikulum Section -->
     <section id="kurikulum" class="max-w-7xl mx-auto px-5 py-24">
         <div class="text-center mb-16">
-            <h3 class="text-3xl md:text-4xl font-bold mb-4">Kurikulum Terstruktur</h3>
-            <div class="h-1.5 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            <h3 class="text-3xl md:text-4xl font-bold">Kurikulum Terstruktur</h3>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="glass p-8 rounded-3xl relative overflow-hidden group">
-                <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                    <i class="fas fa-cube text-2xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-white">Blockchain Basics</h4>
-                <p class="text-slate-400 mb-8 leading-relaxed text-sm">Fundamental teknologi blockchain, Ledger, dan konsensus PoW/PoS.</p>
-                <a href="materi-1.html" class="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-all">
-                    Mulai Belajar <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
-                </a>
+            <div class="glass p-8 rounded-3xl group">
+                <i class="fas fa-cube text-blue-400 text-3xl mb-6"></i>
+                <h4 class="text-xl font-bold mb-3">Blockchain Basics</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Fundamental teknologi blockchain, Ledger, dan konsensus.</p>
+                <a href="materi-1.html" class="text-blue-400 font-bold hover:underline">Mulai Belajar →</a>
             </div>
-
-            <!-- Card 2 -->
-            <div class="glass p-8 rounded-3xl relative overflow-hidden group">
-                <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                    <i class="fas fa-file-code text-2xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-white">Solidity Mastery</h4>
-                <p class="text-slate-400 mb-8 leading-relaxed text-sm">Belajar menulis Smart Contract yang aman dengan bahasa Solidity.</p>
-                <a href="materi-2.html" class="inline-flex items-center gap-2 text-purple-400 font-bold hover:text-purple-300 transition-all">
-                    Pelajari Kode <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
-                </a>
+            <div class="glass p-8 rounded-3xl group">
+                <i class="fas fa-file-code text-purple-400 text-3xl mb-6"></i>
+                <h4 class="text-xl font-bold mb-3">Solidity Mastery</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Menulis Smart Contract aman dengan bahasa Solidity.</p>
+                <a href="materi-2.html" class="text-purple-400 font-bold hover:underline">Pelajari Kode →</a>
             </div>
+            <div class="glass p-8 rounded-3xl group">
+                <i class="fas fa-rocket text-emerald-400 text-3xl mb-6"></i>
+                <h4 class="text-xl font-bold mb-3">DApp Development</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Membangun UI dan menghubungkannya ke Blockchain.</p>
+                <a href="materi-3.html" class="text-emerald-400 font-bold hover:underline">Bangun DApp →</a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Card 3 -->
-            <div class="glass p-8 rounded-3xl relative overflow-hidden group">
-                <div class="w-14 h-14 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <i class="fas fa-rocket text-2xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-white">DApp
+    <div id="walletModal" class="modal">
+        <div class="bg-slate-800 p-8 rounded-2xl max-w-sm w-full text-center border border-slate-700">
+            <h3 class="text-xl font-bold mb-6">Pilih Wallet</h3>
+            <div class="space-y-3">
+                <button onclick="connect('MetaMask')" class="w-full flex items-center gap-4 p-4 hover:bg-slate-700 rounded-xl transition">
+                    <img src="https://cdn-icons-png.flaticon.com/512/15041/15041842.png" class="w-8"> MetaMask
+                </button>
+                <button onclick="connect('Trust Wallet')" class="w-full flex items-center gap-4 p-4 hover:bg-slate-700 rounded-xl transition">
+                    <img src="https://cdn-icons-png.flaticon.com/512/10543/10543265.png" class="w-8"> Trust Wallet
+                </button>
+            </div>
+            <button onclick="toggleModal()" class="mt-6 text-slate-400 hover:text-white">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate Floating Coins
+        const container = document.getElementById('coin-container');
+        for (let i = 0; i < 15; i++) {
+            const coin = document.createElement('i');
+            coin.className = 'fab fa-bitcoin coin-bg';
+            coin.style.left = Math.random() * 100 + 'vw';
+            coin.style.animationDelay = Math.random() * 10 + 's';
+            container.appendChild(coin);
+        }
+
+        // Chart Implementation
+        const ctx = document.getElementById('cryptoChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'BTC Price',
+                    data: [35000, 42000, 38000, 45000, 43000, 48000],
+                    borderColor: '#3b82f6',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Wallet Functions
+        function toggleModal() { document.getElementById('walletModal').classList.toggle('active'); }
+        function connect(name) {
+            document.getElementById('btnText').innerText = "Connecting...";
+            toggleModal();
+            setTimeout(() => {
+                document.getElementById('btnText').innerText = "0x71C...Connected";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
