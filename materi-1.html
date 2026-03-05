@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 1: Blockchain Basics | CampCoding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(135deg, #3b82f6, #2dd4bf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .feature-card { border-top: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="p-5 md:p-10">
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block transition"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <div class="glass p-8 rounded-3xl mb-10">
+            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 1: Blockchain Basics 🧱</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">Sebelum ngoding, kita harus paham fondasinya. Blockchain bukan cuma soal koin, tapi soal sistem kepercayaan baru.</p>
+        </div>
+
+        <div class="space-y-8">
+            <section class="glass p-8 rounded-2xl feature-card">
+                <h2 class="text-2xl font-bold mb-6 text-blue-400">Apa itu Blockchain?</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <i class="fas fa-database text-blue-400 mb-2"></i>
+                        <h4 class="font-bold mb-1">Distributed Ledger</h4>
+                        <p class="text-xs text-slate-400">Buku kas digital yang salinannya dipegang oleh ribuan komputer di seluruh dunia.</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <i class="fas fa-lock text-emerald-400 mb-2"></i>
+                        <h4 class="font-bold mb-1">Immutable</h4>
+                        <p class="text-xs text-slate-400">Data yang sudah masuk ke "Block" tidak bisa dihapus atau diubah selamanya.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-6 text-indigo-400">Mekanisme Konsensus</h2>
+                <p class="mb-6 text-slate-300">Bagaimana ribuan komputer setuju bahwa sebuah transaksi itu valid?</p>
+                <div class="space-y-4">
+                    <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition">
+                        <h4 class="font-bold text-white mb-2">1. Proof of Work (PoW)</h4>
+                        <p class="text-sm text-slate-400">Komputer berebut memecahkan teka-teki matematika rumit. (Digunakan Bitcoin).</p>
+                    </div>
+                    <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition">
+                        <h4 class="font-bold text-white mb-2">2. Proof of Stake (PoS)</h4>
+                        <p class="text-sm text-slate-400">Validasi berdasarkan jumlah koin yang dikunci (staking). Lebih hemat energi. (Digunakan Ethereum).</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-12 flex justify-end">
+            <a href="materi-2.html" class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-500 shadow-lg shadow-blue-500/20 transition flex items-center gap-2">
+                Lanjut ke Modul 2 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
