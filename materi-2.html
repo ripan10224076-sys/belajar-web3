@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 2: Smart Contract | CampCoding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .code-block { background: #0f172a; border-left: 4px solid #8b5cf6; padding: 1.5rem; border-radius: 0.75rem; font-family: monospace; }
+        .gradient-text { background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="p-5 md:p-10">
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <div class="glass p-8 rounded-3xl mb-10">
+            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 2: Apa itu Smart Contract? 📜</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">Setelah paham dasar Blockchain, sekarang kita masuk ke "Otak" dari Web3. Smart Contract adalah kunci otomatisasi di dunia desentralisasi.</p>
+        </div>
+
+        <div class="grid gap-8">
+            <section class="glass p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 text-purple-400"><i class="fas fa-microchip"></i> Definisi Sederhana</h2>
+                <p class="mb-4">Bayangkan Smart Contract seperti **Mesin Minuman Otomatis (Vending Machine)**:</p>
+                <ul class="space-y-3 text-slate-300">
+                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Input:</strong> Kamu masukkan koin (Crypto).</span></li>
+                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Logika:</strong> Mesin cek koin cukup atau tidak.</span></li>
+                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Output:</strong> Minuman keluar otomatis tanpa perlu pelayan/kasir.</span></li>
+                </ul>
+            </section>
+
+            <section class="glass p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400"><i class="fas fa-code"></i> Bahasa Pemrograman: Solidity</h2>
+                <p class="mb-6">Bahasa paling populer untuk membuat Smart Contract di Ethereum adalah **Solidity**. Berikut adalah struktur dasarnya:</p>
+                
+                <div class="code-block text-sm overflow-x-auto">
+                    <pre class="text-blue-300">// SPDX-License-Identifier: MIT</pre>
+                    <pre class="text-blue-300">pragma solidity ^0.8.0;</pre>
+                    <br>
+                    <pre class="text-purple-400">contract HaloWeb3 {</pre>
+                    <pre class="text-slate-300">    string public pesan = "Halo CampCoding!";</pre>
+                    <pre class="text-slate-300">    </pre>
+                    <pre class="text-slate-300">    function gantiPesan(string memory _pesanBaru) public {</pre>
+                    <pre class="text-slate-300">        pesan = _pesanBaru;</pre>
+                    <pre class="text-slate-300">    }</pre>
+                    <pre class="text-purple-400">}</pre>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-12 flex justify-between items-center">
+            <a href="materi-1.html" class="glass px-6 py-3 rounded-xl hover:bg-white/5 transition">← Modul Sebelumnya</a>
+            <a href="materi-3.html" class="bg-purple-600 px-8 py-3 rounded-xl font-bold hover:bg-purple-500 shadow-lg shadow-purple-500/20 transition">Lanjut ke Modul 3 →</a>
+        </div>
+    </div>
+</body>
+</html>
