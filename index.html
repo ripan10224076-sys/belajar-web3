@@ -10,47 +10,29 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         
-        :root {
-            --primary: #3b82f6;
-            --secondary: #8b5cf6;
-            --accent: #10b981;
-        }
-
         body { 
             background-color: #020617; 
             color: #f8fafc; 
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Background Gradient Mesh */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Floating Coins Animation */
+        /* 1. KEMBALIKAN ANIMASI KOIN MELAYANG */
         .coin-bg {
             position: fixed;
-            opacity: 0.1;
+            opacity: 0.15;
             z-index: -1;
             animation: floatCoin 15s infinite linear;
+            pointer-events: none;
         }
-
         @keyframes floatCoin {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
+        /* 2. EFEK GLASSMORPHISM & HOVER */
         .glass { 
             background: rgba(15, 23, 42, 0.4); 
             backdrop-filter: blur(16px); 
@@ -58,11 +40,10 @@
             border: 1px solid rgba(255,255,255,0.08); 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .glass:hover {
             border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.3);
         }
 
         .gradient-text { 
@@ -71,168 +52,222 @@
             -webkit-text-fill-color: transparent; 
         }
 
+        /* 3. ANIMASI HERO */
         @keyframes floatHero {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(2deg); }
         }
         .animate-float-hero {
-            animation: floatHero 5s ease-in-out infinite;
+            animation: floatHero 6s ease-in-out infinite;
         }
 
-        /* Modal Styles */
+        /* Modal Wallet */
         .modal {
             display: none;
             position: fixed;
             z-index: 100;
             left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
         }
         .modal.active { display: flex; }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
+<body class="antialiased selection:bg-blue-500">
 
     <div id="coin-container"></div>
 
     <nav class="sticky top-0 z-50 p-4 md:p-5 glass border-b border-white/5">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <i class="fas fa-cube text-blue-400 text-2xl"></i>
+                <div class="bg-blue-600/20 p-2 rounded-lg border border-blue-500/30">
+                    <i class="fas fa-cube text-blue-400 text-xl"></i>
+                </div>
                 <div class="flex flex-col">
-                    <h1 class="text-xl font-extrabold text-white">CampCoding</h1>
-                    <span class="text-xs text-blue-400 font-semibold tracking-wider">WEB3 ACADEMY</span>
+                    <h1 class="text-xl font-extrabold text-white tracking-tight">CampCoding</h1>
+                    <span class="text-[10px] text-blue-400 font-bold tracking-[0.2em] uppercase">Web3 Academy</span>
                 </div>
             </div>
             
-            <div class="hidden md:flex items-center gap-6">
-                <a href="#kurikulum" class="text-slate-400 hover:text-white transition text-sm">Kurikulum</a>
-                <a href="#market" class="text-slate-400 hover:text-white transition text-sm">Live Market</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#kurikulum" class="text-slate-400 hover:text-white transition text-sm font-semibold">Kurikulum</a>
+                <a href="#market" class="text-slate-400 hover:text-white transition text-sm font-semibold">Live Market</a>
+                <a href="#komunitas" class="text-slate-400 hover:text-white transition text-sm font-semibold">Komunitas</a>
             </div>
 
-            <button onclick="toggleModal()" class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20">
+            <button onclick="toggleModal()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-blue-500/25">
                 <i class="fas fa-wallet"></i>
                 <span id="btnText">Connect Wallet</span>
             </button>
         </div>
     </nav>
 
-    <header class="max-w-7xl mx-auto text-center py-16 px-5 relative">
-        <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-300 text-sm font-semibold animate-pulse">
+    <header class="max-w-7xl mx-auto text-center py-20 px-5 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full -z-10"></div>
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-10 border border-blue-500/30 rounded-full bg-blue-500/5 text-blue-300 text-xs font-bold uppercase tracking-widest animate-pulse">
             <span class="w-2 h-2 rounded-full bg-green-400"></span>
-            Batch 1: Pendaftaran Dibuka
+            Batch 1: Terbuka untuk Umum
         </div>
 
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
-            Kuasai Masa Depan <br>
-            <span class="gradient-text italic">Internet Desentralisasi</span>
+        <h2 class="text-5xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tighter">
+            Build the Future on <br>
+            <span class="gradient-text italic">Blockchain.</span>
         </h2>
         
-        <div class="flex flex-col md:flex-row justify-center gap-4 mb-20">
-            <a href="materi-1.html" class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-extrabold hover:scale-105 transition shadow-xl">
-                Mulai Belajar Sekarang <i class="fas fa-arrow-right ml-2"></i>
+        <p class="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl mb-12 leading-relaxed font-medium">
+            Belajar ekosistem Web3 secara gratis, interaktif, dan terarah. Dari pemula hingga mahir dalam satu platform.
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center gap-5 mb-24">
+            <a href="materi-1.html" class="bg-white text-slate-900 px-10 py-4 rounded-2xl font-extrabold hover:scale-105 transition-all shadow-2xl shadow-white/10 flex items-center justify-center gap-2">
+                Mulai Belajar <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="https://github.com/ripan10224076-sys/belajar-web3" target="_blank" class="glass px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
-                <i class="fab fa-github mr-2"></i> Star di GitHub
+            <a href="https://github.com/ripan10224076-sys/belajar-web3" target="_blank" class="glass px-10 py-4 rounded-2xl font-bold hover:bg-white/5 transition flex items-center justify-center gap-2">
+                <i class="fab fa-github text-xl"></i> Repository
             </a>
         </div>
 
         <img src="https://cdn-icons-png.flaticon.com/512/2679/2679767.png" 
              alt="Web3 Illustration" 
-             class="w-64 md:w-80 mx-auto drop-shadow-2xl animate-float-hero">
+             class="w-64 md:w-96 mx-auto drop-shadow-[0_35px_35px_rgba(59,130,246,0.3)] animate-float-hero">
     </header>
 
-    <section id="market" class="max-w-7xl mx-auto px-5 py-16">
-        <div class="glass rounded-3xl p-8">
-            <h3 class="text-2xl font-bold text-white mb-2">Live Market Data</h3>
-            <p class="text-slate-400 text-sm mb-8">Data simulasi untuk analisis teknikal.</p>
-            <div class="h-64 md:h-80">
+    <section id="market" class="max-w-7xl mx-auto px-5 py-20">
+        <div class="glass rounded-[2.5rem] p-10 border border-white/10 relative overflow-hidden">
+            <div class="flex justify-between items-center mb-10">
+                <h3 class="text-2xl font-black text-white">Live Market Tracker</h3>
+                <span class="bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-xs font-bold">Realtime</span>
+            </div>
+            <div class="h-80">
                 <canvas id="cryptoChart"></canvas>
             </div>
         </div>
     </section>
 
-    <section id="kurikulum" class="max-w-7xl mx-auto px-5 py-24">
-        <div class="text-center mb-16">
-            <h3 class="text-3xl md:text-4xl font-bold">Kurikulum Terstruktur</h3>
-        </div>
-
+    <section id="kurikulum" class="max-w-7xl mx-auto px-5 py-20">
+        <h3 class="text-4xl font-black text-center mb-16">Kurikulum Belajar</h3>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass p-8 rounded-3xl group">
-                <i class="fas fa-cube text-blue-400 text-3xl mb-6"></i>
-                <h4 class="text-xl font-bold mb-3">Blockchain Basics</h4>
-                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Fundamental teknologi blockchain, Ledger, dan konsensus.</p>
-                <a href="materi-1.html" class="text-blue-400 font-bold hover:underline">Mulai Belajar →</a>
+            <div class="glass p-10 rounded-[2rem] group cursor-pointer border-b-4 border-blue-500">
+                <i class="fas fa-cube text-blue-400 text-4xl mb-8 group-hover:scale-110 transition-transform"></i>
+                <h4 class="text-xl font-bold mb-4">Blockchain Basics</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Pahami Ledger, Decentralization, dan cara kerja Smart Contract.</p>
+                <a href="materi-1.html" class="text-blue-400 font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-xs tracking-widest">
+                    Mulai <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
-            <div class="glass p-8 rounded-3xl group">
-                <i class="fas fa-file-code text-purple-400 text-3xl mb-6"></i>
-                <h4 class="text-xl font-bold mb-3">Solidity Mastery</h4>
-                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Menulis Smart Contract aman dengan bahasa Solidity.</p>
-                <a href="materi-2.html" class="text-purple-400 font-bold hover:underline">Pelajari Kode →</a>
+            <div class="glass p-10 rounded-[2rem] group cursor-pointer border-b-4 border-purple-500">
+                <i class="fas fa-code text-purple-400 text-4xl mb-8 group-hover:scale-110 transition-transform"></i>
+                <h4 class="text-xl font-bold mb-4">Solidity Master</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Tulis kode Smart Contract pertama kamu dengan bahasa Solidity.</p>
+                <a href="materi-2.html" class="text-purple-400 font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-xs tracking-widest">
+                    Pelajari <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
-            <div class="glass p-8 rounded-3xl group">
-                <i class="fas fa-rocket text-emerald-400 text-3xl mb-6"></i>
-                <h4 class="text-xl font-bold mb-3">DApp Development</h4>
-                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Membangun UI dan menghubungkannya ke Blockchain.</p>
-                <a href="materi-3.html" class="text-emerald-400 font-bold hover:underline">Bangun DApp →</a>
+            <div class="glass p-10 rounded-[2rem] group cursor-pointer border-b-4 border-emerald-500">
+                <i class="fas fa-rocket text-emerald-400 text-4xl mb-8 group-hover:scale-110 transition-transform"></i>
+                <h4 class="text-xl font-bold mb-4">DApp Builder</h4>
+                <p class="text-slate-400 mb-8 text-sm leading-relaxed">Hubungkan Smart Contract ke tampilan Website yang interaktif.</p>
+                <a href="materi-3.html" class="text-emerald-400 font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-xs tracking-widest">
+                    Build <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
+    <section id="komunitas" class="max-w-7xl mx-auto px-5 py-20">
+        <div class="glass rounded-[3rem] p-12 text-center relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/20 blur-[100px] rounded-full"></div>
+            <h3 class="text-4xl font-black mb-6">Gabung Komunitas Kami</h3>
+            <p class="text-slate-400 max-w-xl mx-auto mb-10 font-medium">Jangan belajar sendirian! Ribuan developer lain siap membantu kamu di perjalanan Web3 ini.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#" class="bg-[#5865F2] hover:bg-[#4752C4] px-8 py-3 rounded-xl font-bold flex items-center gap-3 transition-transform hover:scale-105">
+                    <i class="fab fa-discord text-xl"></i> Discord
+                </a>
+                <a href="#" class="bg-[#1DA1F2] hover:bg-[#1a91da] px-8 py-3 rounded-xl font-bold flex items-center gap-3 transition-transform hover:scale-105">
+                    <i class="fab fa-twitter text-xl"></i> Twitter
+                </a>
+                <a href="#" class="bg-[#24292F] hover:bg-[#1c2024] px-8 py-3 rounded-xl font-bold flex items-center gap-3 border border-white/10 transition-transform hover:scale-105">
+                    <i class="fab fa-github text-xl"></i> GitHub Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-slate-500 text-sm font-medium">© 2026 Developed by <span class="text-white">Ripan</span> • CampCoding Academy</p>
+    </footer>
+
     <div id="walletModal" class="modal">
-        <div class="bg-slate-800 p-8 rounded-2xl max-w-sm w-full text-center border border-slate-700">
-            <h3 class="text-xl font-bold mb-6">Pilih Wallet</h3>
-            <div class="space-y-3">
-                <button onclick="connect('MetaMask')" class="w-full flex items-center gap-4 p-4 hover:bg-slate-700 rounded-xl transition">
-                    <img src="https://cdn-icons-png.flaticon.com/512/15041/15041842.png" class="w-8"> MetaMask
+        <div class="glass p-10 rounded-3xl max-w-sm w-full text-center border border-white/10">
+            <h3 class="text-xl font-bold mb-8">Pilih Dompet Kamu</h3>
+            <div class="space-y-4">
+                <button onclick="connect('MetaMask')" class="w-full flex items-center gap-4 p-5 hover:bg-white/5 rounded-2xl transition border border-white/5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/15041/15041842.png" class="w-8"> <span class="font-bold">MetaMask</span>
                 </button>
-                <button onclick="connect('Trust Wallet')" class="w-full flex items-center gap-4 p-4 hover:bg-slate-700 rounded-xl transition">
-                    <img src="https://cdn-icons-png.flaticon.com/512/10543/10543265.png" class="w-8"> Trust Wallet
+                <button onclick="connect('TrustWallet')" class="w-full flex items-center gap-4 p-5 hover:bg-white/5 rounded-2xl transition border border-white/5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/10543/10543265.png" class="w-8"> <span class="font-bold">Trust Wallet</span>
                 </button>
             </div>
-            <button onclick="toggleModal()" class="mt-6 text-slate-400 hover:text-white">Tutup</button>
+            <button onclick="toggleModal()" class="mt-8 text-slate-500 hover:text-white font-bold uppercase text-xs tracking-widest transition">Cancel</button>
         </div>
     </div>
 
     <script>
-        // Generate Floating Coins
+        // 5. LOGIKA KOIN MELAYANG
         const container = document.getElementById('coin-container');
-        for (let i = 0; i < 15; i++) {
+        const icons = ['fa-bitcoin', 'fa-ethereum', 'fa-coins'];
+        for (let i = 0; i < 18; i++) {
             const coin = document.createElement('i');
-            coin.className = 'fab fa-bitcoin coin-bg';
+            const iconClass = icons[Math.floor(Math.random() * icons.length)];
+            coin.className = `fab ${iconClass} coin-bg`;
             coin.style.left = Math.random() * 100 + 'vw';
-            coin.style.animationDelay = Math.random() * 10 + 's';
+            coin.style.animationDelay = Math.random() * 15 + 's';
+            coin.style.fontSize = Math.random() * 25 + 15 + 'px';
             container.appendChild(coin);
         }
 
-        // Chart Implementation
+        // Logika Chart
         const ctx = document.getElementById('cryptoChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 datasets: [{
-                    label: 'BTC Price',
-                    data: [35000, 42000, 38000, 45000, 43000, 48000],
+                    label: 'ETH Price Movement',
+                    data: [2100, 2300, 2200, 2500, 2400, 2700, 2600],
                     borderColor: '#3b82f6',
+                    borderWidth: 4,
                     tension: 0.4,
+                    pointRadius: 0,
                     fill: true,
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)'
+                    backgroundColor: (context) => {
+                        const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
+                        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.4)');
+                        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+                        return gradient;
+                    }
                 }]
             },
-            options: { responsive: true, maintainAspectRatio: false }
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { grid: { display: false }, ticks: { display: false } },
+                    x: { grid: { display: false }, ticks: { color: '#64748b' } }
+                }
+            }
         });
 
-        // Wallet Functions
+        // Modal Logic
         function toggleModal() { document.getElementById('walletModal').classList.toggle('active'); }
         function connect(name) {
             document.getElementById('btnText').innerText = "Connecting...";
             toggleModal();
-            setTimeout(() => {
-                document.getElementById('btnText').innerText = "0x71C...Connected";
-            }, 1000);
+            setTimeout(() => { document.getElementById('btnText').innerText = "0x71...Connected"; }, 1200);
         }
     </script>
 </body>
