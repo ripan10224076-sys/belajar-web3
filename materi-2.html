@@ -2,60 +2,106 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul 2: Smart Contract | CampCoding</title>
+    <title>Modul 2: Solidity Master | Web3 Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .code-block { background: #0f172a; border-left: 4px solid #8b5cf6; padding: 1.5rem; border-radius: 0.75rem; font-family: monospace; }
-        .gradient-text { background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Sora:wght@300;400;600&display=swap');
+        
+        body { background: #020617; color: white; font-family: 'Sora', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        
+        /* Style untuk Editor Coding */
+        .code-editor {
+            font-family: 'Fira Code', monospace;
+            background: #0f172a;
+            color: #38bdf8;
+            border-left: 4px solid #818cf8;
+            resize: none;
+            line-height: 1.6;
+        }
+        .code-editor:focus {
+            outline: none;
+            border-color: #c084fc;
+            box-shadow: 0 0 15px rgba(129, 140, 248, 0.2);
+        }
     </style>
 </head>
-<body class="p-5 md:p-10">
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+<body class="p-8">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-black mb-6 text-purple-400 uppercase tracking-tighter">Modul 2: Solidity Master</h1>
         
-        <div class="glass p-8 rounded-3xl mb-10">
-            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 2: Apa itu Smart Contract? 📜</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">Setelah paham dasar Blockchain, sekarang kita masuk ke "Otak" dari Web3. Smart Contract adalah kunci otomatisasi di dunia desentralisasi.</p>
+        <div class="glass p-6 mb-8 text-slate-300">
+            <h2 class="text-xl font-bold text-white mb-4">Struktur Dasar Smart Contract</h2>
+            <p class="mb-4 text-sm">Setiap file Solidity harus dimulai dengan lisensi dan versi compiler. Struktur utamanya menggunakan keyword <code>contract</code>.</p>
+            <div class="bg-black/50 p-4 rounded text-xs text-purple-300 mb-4">
+                <code>// SPDX-License-Identifier: MIT</code><br>
+                <code>pragma solidity ^0.8.0;</code>
+            </div>
         </div>
 
-        <div class="grid gap-8">
-            <section class="glass p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 text-purple-400"><i class="fas fa-microchip"></i> Definisi Sederhana</h2>
-                <p class="mb-4">Bayangkan Smart Contract seperti **Mesin Minuman Otomatis (Vending Machine)**:</p>
-                <ul class="space-y-3 text-slate-300">
-                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Input:</strong> Kamu masukkan koin (Crypto).</span></li>
-                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Logika:</strong> Mesin cek koin cukup atau tidak.</span></li>
-                    <li class="flex gap-3"><i class="fas fa-check text-emerald-400 mt-1"></i> <span><strong>Output:</strong> Minuman keluar otomatis tanpa perlu pelayan/kasir.</span></li>
-                </ul>
-            </section>
+        <div class="glass p-8 border-t-4 border-purple-500 mb-10">
+            <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-terminal text-purple-400"></i> Live Coding Challenge
+            </h3>
+            <p class="text-sm text-slate-400 mb-6">Tugas: Buatlah kontrak bernama <span class="text-purple-300 font-bold">Latihan</span> yang memiliki satu variabel string public bernama <span class="text-purple-300 font-bold">pesan</span>.</p>
 
-            <section class="glass p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 text-blue-400"><i class="fas fa-code"></i> Bahasa Pemrograman: Solidity</h2>
-                <p class="mb-6">Bahasa paling populer untuk membuat Smart Contract di Ethereum adalah **Solidity**. Berikut adalah struktur dasarnya:</p>
-                
-                <div class="code-block text-sm overflow-x-auto">
-                    <pre class="text-blue-300">// SPDX-License-Identifier: MIT</pre>
-                    <pre class="text-blue-300">pragma solidity ^0.8.0;</pre>
-                    <br>
-                    <pre class="text-purple-400">contract HaloWeb3 {</pre>
-                    <pre class="text-slate-300">    string public pesan = "Halo CampCoding!";</pre>
-                    <pre class="text-slate-300">    </pre>
-                    <pre class="text-slate-300">    function gantiPesan(string memory _pesanBaru) public {</pre>
-                    <pre class="text-slate-300">        pesan = _pesanBaru;</pre>
-                    <pre class="text-slate-300">    }</pre>
-                    <pre class="text-purple-400">}</pre>
+            <div class="relative">
+                <div class="absolute left-3 top-4 text-slate-600 text-xs text-right w-4 select-none">
+                    1<br>2<br>3<br>4<br>5
                 </div>
-            </section>
+                <textarea id="userCode" class="code-editor w-full h-40 p-4 pl-10 rounded-lg mb-4" spellcheck="false">
+contract Latihan {
+    // Tulis kode kamu di sini
+    
+}</textarea>
+            </div>
+
+            <button onclick="compileCode()" class="bg-purple-600 hover:bg-purple-500 w-full py-3 font-bold rounded transition flex items-center justify-center gap-2">
+                <i class="fas fa-play text-xs"></i> RUN & COMPILE
+            </button>
+
+            <div id="console" class="mt-4 p-4 bg-black rounded text-xs font-mono hidden">
+                <span id="console-msg"></span>
+            </div>
         </div>
 
-        <div class="mt-12 flex justify-between items-center">
-            <a href="materi-1.html" class="glass px-6 py-3 rounded-xl hover:bg-white/5 transition">← Modul Sebelumnya</a>
-            <a href="materi-3.html" class="bg-purple-600 px-8 py-3 rounded-xl font-bold hover:bg-purple-500 shadow-lg shadow-purple-500/20 transition">Lanjut ke Modul 3 →</a>
+        <div id="next-area" class="hidden text-center animate-bounce">
+            <p class="text-green-400 font-bold mb-4">🎉 Kode Benar! Kamu lulus ujian coding.</p>
+            <a href="materi-3.html" class="bg-white text-black px-10 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition inline-block">
+                Lanjut ke Modul 3
+            </a>
         </div>
     </div>
+
+    <script>
+        function compileCode() {
+            const code = document.getElementById('userCode').value;
+            const consoleBox = document.getElementById('console');
+            const consoleMsg = document.getElementById('console-msg');
+            const nextArea = document.getElementById('next-area');
+
+            consoleBox.classList.remove('hidden');
+            consoleMsg.innerHTML = "> Compiling Solidity v0.8.0...<br>";
+
+            setTimeout(() => {
+                // Logika Validasi Sederhana (Mengecek kata kunci)
+                const hasString = code.includes("string");
+                const hasPublic = code.includes("public");
+                const hasPesan = code.includes("pesan");
+                const hasSemicolon = code.includes(";");
+
+                if (hasString && hasPublic && hasPesan && hasSemicolon) {
+                    consoleMsg.innerHTML += "<span class='text-green-400'>> Success: Contract 'Latihan' deployed!</span>";
+                    nextArea.classList.remove('hidden');
+                    // Scroll otomatis ke bawah
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                } else {
+                    consoleMsg.innerHTML += "<span class='text-red-400'>> Error: Variabel 'string public pesan;' tidak ditemukan atau salah tulis.</span>";
+                    nextArea.classList.add('hidden');
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
