@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pinyon+Script&family=Sora:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pinyon+Script&family=Sora:wght@300;400;600;800&family=Orbitron:wght@700&display=swap');
         
         body { background: #020617; color: white; font-family: 'Sora', sans-serif; }
         .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
@@ -23,20 +23,22 @@
         }
         .signature { font-family: 'Pinyon Script', cursive; font-size: 3rem; color: #fbbf24; line-height: 1; }
         .cert-title { font-family: 'Cinzel', serif; letter-spacing: 4px; }
+        .academy-font { font-family: 'Orbitron', sans-serif; }
     </style>
 </head>
 <body class="p-5 md:p-10 flex flex-col items-center">
 
     <div id="exam-box" class="max-w-2xl w-full py-10">
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-black text-yellow-500 italic uppercase cert-title">Final Professional Exam</h1>
+        <div class="flex flex-col items-center mb-8">
+            <img src="logo.jpg" alt="Logo Web3 Academy" class="h-16 w-auto mb-4 rounded shadow-lg">
+            <h1 class="text-3xl font-black text-yellow-500 italic uppercase cert-title text-center">Final Professional Exam</h1>
             <p class="text-slate-500 text-sm mt-2">Jawab 10 soal berikut dengan benar untuk mendapatkan sertifikat.</p>
         </div>
         
         <div class="space-y-6">
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">1. Apa mekanisme konsensus yang digunakan Ethereum setelah "The Merge"?</p>
-                <select id="q1" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm">
+                <select id="q1" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white">
                     <option value="">-- Pilih Jawaban --</option>
                     <option value="pow">Proof of Work (PoW)</option>
                     <option value="pos">Proof of Stake (PoS)</option>
@@ -46,12 +48,12 @@
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">2. Satuan terkecil dari Ether (ETH) disebut apa?</p>
-                <input type="text" id="q2" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="Contoh: gwei / wei">
+                <input type="text" id="q2" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="Contoh: gwei / wei">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">3. Apa fungsi dari "Gas" dalam jaringan blockchain?</p>
-                <select id="q3" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm">
+                <select id="q3" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white">
                     <option value="">-- Pilih Jawaban --</option>
                     <option value="a">Menyimpan data gambar</option>
                     <option value="b">Biaya transaksi & pencegahan spam</option>
@@ -61,37 +63,37 @@
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">4. Smart contract bersifat "Immutable", artinya?</p>
-                <input type="text" id="q4" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="Jawaban: T____ K___ D_____">
+                <input type="text" id="q4" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="Jawaban: T____ K___ D_____">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">5. Apa visibilitas fungsi agar HANYA bisa dipanggil dari dalam kontrak itu sendiri?</p>
-                <input type="text" id="q5" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="Contoh: public / private">
+                <input type="text" id="q5" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="Contoh: public / private">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">6. Apa nama wallet crypto paling populer untuk browser?</p>
-                <input type="text" id="q6" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="M___m___">
+                <input type="text" id="q6" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="M___m___">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">7. Library JS apa yang digunakan untuk interaksi dengan Smart Contract?</p>
-                <input type="text" id="q7" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="Contoh: ethers.js">
+                <input type="text" id="q7" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="Contoh: ethers.js">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">8. Apa kepanjangan dari DApp?</p>
-                <input type="text" id="q8" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="D_________ A__________">
+                <input type="text" id="q8" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="D_________ A__________">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">9. Komputer yang menjalankan software blockchain disebut apa?</p>
-                <input type="text" id="q9" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm" placeholder="N___">
+                <input type="text" id="q9" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white" placeholder="N___">
             </div>
 
             <div class="glass p-5 border-l-2 border-yellow-500">
                 <p class="text-sm font-bold mb-3">10. Hacker bisa mengubah data di blockchain jika menguasai 51% jaringan. Benar/Salah?</p>
-                <select id="q10" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm">
+                <select id="q10" class="w-full bg-slate-900 p-3 rounded border border-slate-700 text-sm text-white">
                     <option value="">-- Pilih Jawaban --</option>
                     <option value="benar">Benar</option>
                     <option value="salah">Salah</option>
@@ -107,8 +109,9 @@
 
     <div id="cert-section" class="hidden flex-col items-center py-20 animate-fadeIn">
         <div id="certificate">
-            <i class="fas fa-award text-yellow-500 text-6xl mb-6"></i>
-            <h4 class="text-[10px] tracking-[6px] text-yellow-500 mb-2">CAMPCODING ACADEMY</h4>
+            <img src="logo.jpg" alt="Logo Academy" class="h-16 w-auto mb-4 rounded opacity-90">
+            
+            <h4 class="text-[10px] tracking-[6px] text-yellow-500 mb-2 academy-font">CAMPCODING ACADEMY</h4>
             <h2 class="text-3xl mb-6 cert-title text-center">CERTIFICATE OF EXCELLENCE</h2>
             
             <p class="text-xs italic text-slate-400 mb-2">This is to certify that</p>
@@ -161,6 +164,7 @@
                     document.getElementById('cert-id-display').innerText = "Verify: W3-" + Math.floor(100000 + Math.random() * 900000);
                     document.getElementById('exam-box').classList.add('hidden');
                     document.getElementById('cert-section').classList.remove('hidden');
+                    document.getElementById('cert-section').style.display = 'flex';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             } else {
