@@ -2,64 +2,69 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul 1: Blockchain Basics | CampCoding</title>
+    <title>Modul 1: Blockchain Basics | Web3 Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .gradient-text { background: linear-gradient(135deg, #3b82f6, #2dd4bf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .feature-card { border-top: 4px solid #3b82f6; }
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap');
+        body { background: #020617; color: white; font-family: 'Sora', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
     </style>
 </head>
-<body class="p-5 md:p-10">
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block transition"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+<body class="p-8">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-black mb-6 text-blue-400 uppercase tracking-tighter">Modul 1: Blockchain Basics</h1>
         
-        <div class="glass p-8 rounded-3xl mb-10">
-            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 1: Blockchain Basics 🧱</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">Sebelum ngoding, kita harus paham fondasinya. Blockchain bukan cuma soal koin, tapi soal sistem kepercayaan baru.</p>
+        <div class="glass p-6 mb-10 leading-relaxed text-slate-300">
+            <h2 class="text-xl font-bold text-white mb-4">Apa itu Blockchain?</h2>
+            <p class="mb-4">Blockchain adalah buku kas digital (ledger) yang bersifat desentralisasi. Artinya, data tidak disimpan di satu server pusat, melainkan di ribuan komputer (node) di seluruh dunia.</p>
+            <ul class="list-disc ml-5 space-y-2">
+                <li><b>Immutability:</b> Data yang sudah masuk tidak bisa diubah.</li>
+                <li><b>Transparency:</b> Semua orang bisa melihat transaksi.</li>
+                <li><b>Decentralized:</b> Tidak ada otoritas tunggal (seperti bank pusat).</li>
+            </ul>
         </div>
 
-        <div class="space-y-8">
-            <section class="glass p-8 rounded-2xl feature-card">
-                <h2 class="text-2xl font-bold mb-6 text-blue-400">Apa itu Blockchain?</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <i class="fas fa-database text-blue-400 mb-2"></i>
-                        <h4 class="font-bold mb-1">Distributed Ledger</h4>
-                        <p class="text-xs text-slate-400">Buku kas digital yang salinannya dipegang oleh ribuan komputer di seluruh dunia.</p>
-                    </div>
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <i class="fas fa-lock text-emerald-400 mb-2"></i>
-                        <h4 class="font-bold mb-1">Immutable</h4>
-                        <p class="text-xs text-slate-400">Data yang sudah masuk ke "Block" tidak bisa dihapus atau diubah selamanya.</p>
-                    </div>
+        <div id="quiz-modul" class="glass p-8 border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold mb-6 italic">Mini Quiz (Syarat Lulus ke Modul 2)</h3>
+            <div class="space-y-6">
+                <div>
+                    <p class="mb-2">1. Siapa penemu Bitcoin (nama samaran)?</p>
+                    <input type="text" id="q1" class="w-full bg-slate-900 p-3 border border-slate-700 rounded" placeholder="Jawaban...">
                 </div>
-            </section>
-
-            <section class="glass p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-6 text-indigo-400">Mekanisme Konsensus</h2>
-                <p class="mb-6 text-slate-300">Bagaimana ribuan komputer setuju bahwa sebuah transaksi itu valid?</p>
-                <div class="space-y-4">
-                    <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition">
-                        <h4 class="font-bold text-white mb-2">1. Proof of Work (PoW)</h4>
-                        <p class="text-sm text-slate-400">Komputer berebut memecahkan teka-teki matematika rumit. (Digunakan Bitcoin).</p>
-                    </div>
-                    <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition">
-                        <h4 class="font-bold text-white mb-2">2. Proof of Stake (PoS)</h4>
-                        <p class="text-sm text-slate-400">Validasi berdasarkan jumlah koin yang dikunci (staking). Lebih hemat energi. (Digunakan Ethereum).</p>
-                    </div>
+                <div>
+                    <p class="mb-2">2. Sifat data yang tidak bisa diubah di Blockchain disebut?</p>
+                    <select id="q2" class="w-full bg-slate-900 p-3 border border-slate-700 rounded">
+                        <option value="">Pilih...</option>
+                        <option value="mutable">Mutable</option>
+                        <option value="immutable">Immutable</option>
+                    </select>
                 </div>
-            </section>
-        </div>
-
-        <div class="mt-12 flex justify-end">
-            <a href="materi-2.html" class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-500 shadow-lg shadow-blue-500/20 transition flex items-center gap-2">
-                Lanjut ke Modul 2 <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+            <button onclick="cekLulus()" class="mt-8 bg-blue-600 w-full py-3 font-bold hover:bg-blue-500 transition">CEK SKOR & LANJUT</button>
+            <p id="status" class="mt-4 text-center font-bold"></p>
         </div>
     </div>
+
+    <script>
+        function cekLulus() {
+            const a1 = document.getElementById('q1').value.toLowerCase();
+            const a2 = document.getElementById('q2').value;
+            let skor = 0;
+
+            if(a1.includes("satoshi")) skor += 50;
+            if(a2 === "immutable") skor += 50;
+
+            const status = document.getElementById('status');
+            if(skor === 100) {
+                status.innerHTML = "SKOR: 100/100 - LULUS! Mengalihkan...";
+                status.className = "mt-4 text-center font-bold text-green-400";
+                setTimeout(() => { window.location.href = "materi-2.html"; }, 1500);
+            } else {
+                status.innerText = `Skor: ${skor}/100. Belajar lagi ya!`;
+                status.className = "mt-4 text-center font-bold text-red-400";
+            }
+        }
+    </script>
 </body>
 </html>
