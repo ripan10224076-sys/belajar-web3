@@ -8,14 +8,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Sora:wght@300;400;600;800&display=swap');
         
+        :root {
+            --bg-dark: #020617;
+            --neon-blue: #38bdf8;
+            --neon-purple: #818cf8;
+            --neon-emerald: #10b981;
+            --neon-yellow: #fbbf24;
+        }
+
         body { 
-            background-color: #020617; 
+            background-color: var(--bg-dark); 
             color: #f8fafc; 
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Sora', sans-serif;
             overflow-x: hidden;
         }
+
+        /* Logo & Typography */
+        .academy-name { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        .section-title { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
 
         /* Animasi Koin Melayang */
         .coin-bg {
@@ -28,25 +40,48 @@
         @keyframes floatCoin {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        .glass { 
-            background: rgba(15, 23, 42, 0.4); 
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255,255,255,0.08); 
+        /* Glassmorphism V2 (Neo-Brutalism) */
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px !important; /* Sudut tajam sesuai referensi */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .glass:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .navbar-logo {
+            height: 45px;
+            filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.5));
         }
 
         .gradient-text { 
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%); 
+            background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
+        }
+
+        /* Neon Borders */
+        .border-neon-blue { border-bottom: 4px solid var(--neon-blue); }
+        .border-neon-purple { border-bottom: 4px solid var(--neon-purple); }
+        .border-neon-emerald { border-bottom: 4px solid var(--neon-emerald); }
+        .border-neon-yellow { border-bottom: 4px solid var(--neon-yellow); }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -54,43 +89,45 @@
 
     <div id="coin-container"></div>
 
-    <nav class="sticky top-0 z-50 p-4 glass border-b border-white/5">
+    <nav class="sticky top-0 z-50 p-4 glass-card rounded-none border-b border-white/5">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <i class="fas fa-cube text-blue-500 text-2xl"></i>
-                <h1 class="text-xl font-extrabold text-white tracking-tight">CampCoding</h1>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="logo-w3.png" alt="Logo" class="navbar-logo">
+                <div class="flex flex-col">
+                    <h1 class="text-lg academy-name font-bold leading-none">Web3 Tech Academy</h1>
+                    <span class="text-[10px] text-blue-400 font-bold tracking-[3px]">CAMPCODING</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
                 <a href="#kurikulum" class="hover:text-blue-400 transition">Kurikulum</a>
                 <a href="#market" class="hover:text-blue-400 transition">Market</a>
                 <a href="#komunitas" class="hover:text-blue-400 transition">Komunitas</a>
             </div>
-            <button class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-xl font-bold text-sm transition">
+            <button class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg font-bold text-xs transition uppercase tracking-tighter">
                 Connect Wallet
             </button>
         </div>
     </nav>
 
     <header class="max-w-7xl mx-auto text-center py-24 px-5">
-        <div class="inline-block px-4 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest">
-            Learn Web3 for Free
+        <div class="inline-block px-4 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-[4px]">
+            Future Proof Your Career
         </div>
-        <h2 class="text-6xl md:text-7xl font-black mb-8 leading-tight">
-            The Future of <br> <span class="gradient-text">Decentralization</span>
+        <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight academy-name">
+            MASTER THE <br> <span class="gradient-text">BLOCKCHAIN</span>
         </h2>
-        <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-12">
-            Pelajari teknologi Blockchain, Smart Contracts, dan DApps dari dasar hingga mendapatkan sertifikat profesional.
+        <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-12 font-light">
+            Platform edukasi terdesentralisasi untuk mencetak engineer Web3 masa depan.
         </p>
-        <div class="flex justify-center gap-4">
-            <a href="#kurikulum" class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">Mulai Belajar</a>
-            <a href="https://github.com" class="glass px-8 py-4 rounded-2xl font-bold hover:bg-white/5 transition">GitHub</a>
+        <div class="flex justify-center gap-6">
+            <a href="#kurikulum" class="bg-white text-black px-10 py-4 rounded-md font-bold hover:invert transition uppercase text-sm tracking-widest">Explore Course</a>
         </div>
     </header>
 
     <section id="market" class="max-w-5xl mx-auto px-5 py-10">
-        <div class="glass rounded-[2rem] p-8">
-            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Live ETH Tracker
+        <div class="glass-card p-8 border-l-4 border-blue-500">
+            <h3 class="text-sm font-bold mb-6 flex items-center gap-3 uppercase tracking-widest text-blue-400">
+                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span> ETH/USD Realtime Tracker
             </h3>
             <div class="h-64">
                 <canvas id="cryptoChart"></canvas>
@@ -99,53 +136,84 @@
     </section>
 
     <section id="kurikulum" class="max-w-7xl mx-auto px-5 py-20">
-        <h3 class="text-4xl font-black text-center mb-16">Kurikulum Belajar</h3>
-        <div class="grid md:grid-cols-4 gap-6">
+        <h3 class="text-3xl section-title text-center mb-16">Kurikulum Belajar</h3>
+        <div class="grid md:grid-cols-4 gap-8">
             
-            <a href="materi-1.html" class="glass p-8 rounded-3xl border-b-4 border-blue-500">
-                <i class="fas fa-layer-group text-blue-400 text-3xl mb-6"></i>
+            <div class="glass-card p-8 border-neon-blue flex flex-col">
+                <div class="icon-box">
+                    <i class="fas fa-cubes text-blue-400 text-2xl"></i>
+                </div>
                 <h4 class="text-xl font-bold mb-3">Blockchain Basics</h4>
-                <p class="text-slate-400 text-sm">Memahami dasar-dasar ledger dan desentralisasi.</p>
-            </a>
+                <p class="text-slate-400 text-xs leading-relaxed mb-8 flex-grow">Memahami dasar-dasar distributed ledger dan konsensus desentralisasi.</p>
+                <a href="materi-1.html" class="text-blue-400 font-black text-[10px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-4 transition-all">
+                    Mulai Belajar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-            <a href="materi-2.html" class="glass p-8 rounded-3xl border-b-4 border-purple-500">
-                <i class="fas fa-file-code text-purple-400 text-3xl mb-6"></i>
-                <h4 class="text-xl font-bold mb-3">Solidity Mastery</h4>
-                <p class="text-slate-400 text-sm">Belajar menulis Smart Contract yang aman.</p>
-            </a>
+            <div class="glass-card p-8 border-neon-purple flex flex-col">
+                <div class="icon-box">
+                    <i class="fas fa-code text-purple-400 text-2xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Solidity Master</h4>
+                <p class="text-slate-400 text-xs leading-relaxed mb-8 flex-grow">Menulis Smart Contract yang aman dan efisien di jaringan Ethereum.</p>
+                <a href="materi-2.html" class="text-purple-400 font-black text-[10px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-4 transition-all">
+                    Pelajari <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-            <a href="materi-3.html" class="glass p-8 rounded-3xl border-b-4 border-emerald-500">
-                <i class="fas fa-rocket text-emerald-400 text-3xl mb-6"></i>
+            <div class="glass-card p-8 border-neon-emerald flex flex-col">
+                <div class="icon-box">
+                    <i class="fas fa-rocket text-emerald-400 text-2xl"></i>
+                </div>
                 <h4 class="text-xl font-bold mb-3">DApp Builder</h4>
-                <p class="text-slate-400 text-sm">Menghubungkan Web UI ke Blockchain.</p>
-            </a>
+                <p class="text-slate-400 text-xs leading-relaxed mb-8 flex-grow">Membangun antarmuka Web3 dan menghubungkannya ke Blockchain.</p>
+                <a href="materi-3.html" class="text-emerald-400 font-black text-[10px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-4 transition-all">
+                    Build <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-            <a href="exam.html" class="glass p-8 rounded-3xl border-b-4 border-yellow-500 bg-yellow-500/5">
-                <i class="fas fa-certificate text-yellow-400 text-3xl mb-6"></i>
+            <div class="glass-card p-8 border-neon-yellow flex flex-col bg-yellow-400/5">
+                <div class="icon-box">
+                    <i class="fas fa-award text-yellow-400 text-2xl"></i>
+                </div>
                 <h4 class="text-xl font-bold mb-3">Final Exam</h4>
-                <p class="text-slate-400 text-sm">Selesaikan ujian dan dapatkan sertifikat PDF.</p>
-            </a>
+                <p class="text-slate-400 text-xs leading-relaxed mb-8 flex-grow">Uji kemampuanmu dan klaim sertifikat kelulusan digital.</p>
+                <a href="exam.html" class="text-yellow-400 font-black text-[10px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-4 transition-all">
+                    Ambil Ujian <i class="fas fa-certificate"></i>
+                </a>
+            </div>
 
         </div>
     </section>
 
     <section id="komunitas" class="max-w-7xl mx-auto px-5 py-20">
-        <div class="glass rounded-[3rem] p-12 text-center border-dashed border-2 border-white/10">
-            <h3 class="text-3xl font-black mb-6">Gabung Komunitas</h3>
-            <p class="text-slate-400 mb-10">Tanya jawab dan diskusi bersama 5000+ developer Web3 lainnya.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#" class="bg-[#5865F2] px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition hover:scale-105">
+        <div class="glass-card p-12 text-center border-dashed border-2 border-white/10">
+            <h3 class="text-2xl academy-name mb-4">Gabung Komunitas Kami</h3>
+            <p class="text-slate-500 text-sm mb-10 max-w-xl mx-auto font-light">Jangan belajar sendirian! Ribuan developer lain siap membantu kamu di perjalanan Web3 ini.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl font-black text-blue-400">15,000+</span>
+                    <span class="text-[10px] uppercase tracking-widest text-slate-500 mt-2">Devs Connected</span>
+                </div>
+                <div class="w-[1px] h-12 bg-white/10 hidden md:block"></div>
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl font-black text-purple-400">300+</span>
+                    <span class="text-[10px] uppercase tracking-widest text-slate-500 mt-2">Active Projects</span>
+                </div>
+            </div>
+            <div class="mt-12 flex justify-center gap-4">
+                <a href="#" class="bg-[#5865F2] px-8 py-3 rounded-md font-bold text-xs uppercase tracking-widest flex items-center gap-3 hover:scale-105 transition">
                     <i class="fab fa-discord"></i> Discord
                 </a>
-                <a href="#" class="bg-[#1DA1F2] px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition hover:scale-105">
+                <a href="#" class="bg-[#1DA1F2] px-8 py-3 rounded-md font-bold text-xs uppercase tracking-widest flex items-center gap-3 hover:scale-105 transition">
                     <i class="fab fa-twitter"></i> Twitter
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 text-center border-t border-white/5 text-slate-500 text-sm">
-        <p>© 2026 CampCoding Academy. Built with ❤️ for Web3 Community.</p>
+    <footer class="py-12 text-center border-t border-white/5 text-slate-600 text-[10px] font-bold uppercase tracking-[3px]">
+        <p>© 2026 Developed by Ripan Fauzan • CampCoding Academy</p>
     </footer>
 
     <script>
@@ -161,27 +229,32 @@
             container.appendChild(coin);
         }
 
-        // Crypto Chart Logic
+        // Crypto Chart
         const ctx = document.getElementById('cryptoChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 datasets: [{
-                    label: 'ETH Price',
-                    data: [2400, 2450, 2420, 2500, 2480, 2550, 2600],
-                    borderColor: '#3b82f6',
-                    borderWidth: 3,
+                    label: 'ETH/USD',
+                    data: [2400, 2450, 2420, 2580, 2510, 2650, 2600],
+                    borderColor: '#38bdf8',
+                    borderWidth: 2,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#38bdf8',
                     tension: 0.4,
                     fill: true,
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)'
+                    backgroundColor: 'rgba(56, 189, 248, 0.05)'
                 }]
             },
             options: { 
                 responsive: true, 
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
-                scales: { y: { display: false }, x: { grid: { display: false }, ticks: { color: '#64748b' } } }
+                scales: { 
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#475569', size: 10 } },
+                    x: { grid: { display: false }, ticks: { color: '#475569', size: 10 } }
+                }
             }
         });
     </script>
