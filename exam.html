@@ -2,145 +2,83 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Professional Exam | Web3 Academy</title>
+    <title>Professional Exam | Web3 Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pinyon+Script&family=Sora:wght@300;400;600;800&family=Orbitron:wght@700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pinyon+Script&family=Sora&display=swap');
         body { background: #020617; color: white; font-family: 'Sora', sans-serif; }
-        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
-        
-        /* Desain Sertifikat Baru (Background Putih) */
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
         #certificate { 
-            background: #ffffff; 
-            width: 800px; 
-            height: 550px; 
-            padding: 50px;
-            border: 15px solid #0f172a; 
-            outline: 2px solid #bda869; 
-            outline-offset: -20px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative;
-            color: #1e293b; /* Teks gelap agar kontras di bg putih */
+            background: #1e293b; width: 800px; height: 550px; padding: 60px;
+            border: 15px solid #0f172a; outline: 2px solid #fbbf24; outline-offset: -20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
         }
-        
-        /* Tanda tangan Ripan Fauzan diperkecil */
-        .signature { 
-            font-family: 'Pinyon Script', cursive; 
-            font-size: 1.8rem; 
-            color: #bda869; 
-            line-height: 1.2; 
-        }
-        
-        .cert-title { font-family: 'Cinzel', serif; letter-spacing: 4px; color: #0f172a; }
-        .academy-font { font-family: 'Orbitron', sans-serif; }
+        .signature { font-family: 'Pinyon Script', cursive; font-size: 2.8rem; color: #fbbf24; }
     </style>
 </head>
-<body class="p-5 md:p-10 flex flex-col items-center">
+<body class="p-10 flex flex-col items-center">
 
-    <div id="exam-box" class="max-w-2xl w-full py-10">
-        <div class="flex flex-col items-center mb-8">
-            <img src="logo.jpg" alt="Logo" class="h-16 w-auto mb-4 rounded shadow-lg">
-            <h1 class="text-3xl font-black text-yellow-500 italic uppercase cert-title text-center">Final Professional Exam</h1>
-            <p class="text-slate-500 text-sm mt-2 text-center">Jawab 10 soal berikut dengan benar untuk klaim sertifikat.</p>
+    <div id="exam-box" class="max-w-xl w-full">
+        <h1 class="text-3xl font-black text-center text-yellow-500 mb-10 italic uppercase">Final Exam</h1>
+        <div class="space-y-4 mb-8">
+            <div class="glass p-4"><p class="text-sm mb-2">1. Protokol konsensus Ethereum saat ini?</p>
+                <select id="q1" class="w-full bg-slate-900 p-2 text-sm"><option value="">Pilih</option><option value="pos">Proof of Stake</option><option value="pow">Proof of Work</option></select>
+            </div>
+            <div class="glass p-4"><p class="text-sm mb-2">2. Library JS untuk koneksi Blockchain?</p>
+                <input type="text" id="q2" class="w-full bg-slate-900 p-2 text-sm" placeholder="e.g. ethers.js">
+            </div>
+            <div class="glass p-4"><p class="text-sm mb-2">3. Biaya transaksi di Ethereum disebut?</p>
+                <input type="text" id="q3" class="w-full bg-slate-900 p-2 text-sm" placeholder="e.g. gas">
+            </div>
         </div>
-        
-        <div class="space-y-6" id="questions-container">
-            <div class="glass p-5 border-l-2 border-yellow-500">
-                <p class="text-sm font-bold mb-3">1. Mekanisme konsensus Ethereum saat ini?</p>
-                <select id="q1" class="w-full bg-slate-900 p-3 rounded text-white border border-slate-700 text-sm">
-                    <option value="">Pilih</option>
-                    <option value="pos">Proof of Stake (PoS)</option>
-                    <option value="pow">Proof of Work (PoW)</option>
-                </select>
-            </div>
-            </div>
-
-        <button onclick="checkExam()" class="w-full bg-yellow-600 hover:bg-yellow-500 py-5 mt-10 font-black uppercase tracking-[3px] transition shadow-lg shadow-yellow-600/20">
-            Submit Final Exam
-        </button>
-        <p id="error-msg" class="text-center mt-4 text-red-500 font-bold hidden"></p>
+        <button onclick="finish()" class="w-full bg-yellow-600 py-4 font-bold uppercase tracking-widest text-sm">Submit Exam</button>
     </div>
 
-    <div id="cert-section" class="hidden flex flex-col items-center py-10">
+    <div id="cert-area" class="hidden flex flex-col items-center">
         <div id="certificate">
-            <img src="logo.jpg" alt="Logo Academy" class="h-16 w-auto mb-4 rounded opacity-90">
+            <i class="fas fa-certificate text-yellow-500 text-5xl mb-4"></i>
+            <h4 class="text-[10px] tracking-[5px] text-yellow-500 mb-2">CAMPCODING ACADEMY</h4>
+            <h2 style="font-family:'Cinzel'" class="text-3xl mb-4">CERTIFICATE OF EXCELLENCE</h2>
+            <p class="text-xs italic text-slate-400 mb-2">This is to certify that</p>
+            <h3 id="user-name" class="text-4xl text-yellow-500 underline mb-6" style="font-family:'Cinzel'">NAMA ANDA</h3>
+            <p class="max-w-md text-[11px] text-center text-slate-300 leading-relaxed mb-10">Telah menyelesaikan pelatihan intensif Web3 Developer dengan kompetensi di bidang Blockchain, Solidity Smart Contracts, dan DApp Architecture.</p>
             
-            <h4 class="text-[10px] tracking-[6px] text-[#bda869] mb-2 academy-font font-bold">CAMPCODING ACADEMY</h4>
-            <h2 class="text-3xl mb-6 cert-title text-center">CERTIFICATE OF EXCELLENCE</h2>
-            
-            <p class="text-xs italic text-slate-500 mb-2">This is to certify that</p>
-            <h3 id="user-display-name" class="text-4xl text-[#0f172a] underline mb-6 cert-title uppercase text-center font-bold">NAMA ANDA</h3>
-            
-            <p class="max-w-md text-[11px] text-center text-slate-600 leading-relaxed mb-8">
-                Telah berhasil menyelesaikan ujian akhir tingkat profesional dan menunjukkan kompetensi mendalam dalam teknologi Blockchain, Pengembangan Smart Contract Solidity, dan Integrasi DApp.
-            </p>
-
-            <div class="mb-8 text-[10px] text-slate-500 uppercase tracking-widest font-bold">
-                Diterbitkan pada: <span id="date-display" class="text-slate-800">06 Maret 2026</span>
-            </div>
-
             <div class="flex flex-col items-center">
                 <span class="signature">Ripan Fauzan</span>
-                <div class="w-40 h-[1px] bg-slate-300 my-1"></div>
-                <span class="text-[8px] uppercase tracking-[4px] text-slate-500 font-bold">Chief Technology Officer</span>
+                <div class="w-40 h-[1px] bg-slate-600 my-1"></div>
+                <span class="text-[9px] uppercase tracking-widest text-slate-500">Chief Technology Officer</span>
             </div>
-
-            <div class="absolute bottom-8 right-12 text-[8px] text-slate-400 font-mono" id="cert-id-display">
-                Verify: W3-000000
-            </div>
+            <div class="absolute bottom-8 right-12 text-[8px] text-slate-600 font-mono" id="cert-id">ID: 000-000</div>
         </div>
-
-        <div class="mt-10 flex gap-4">
-            <button onclick="downloadCert()" class="bg-emerald-600 hover:bg-emerald-500 px-10 py-4 font-bold rounded uppercase text-xs transition shadow-xl">
-                <i class="fas fa-download mr-2"></i> Download (PDF)
-            </button>
-            <button onclick="location.reload()" class="bg-slate-800 px-10 py-4 rounded font-bold uppercase text-xs">Ulangi Ujian</button>
-        </div>
+        <button onclick="download()" class="mt-8 bg-emerald-600 px-10 py-4 font-bold rounded uppercase text-xs">Download PDF Certificate</button>
     </div>
 
     <script>
-        function checkExam() {
-            let score = 0;
-            // Contoh validasi jawaban (lengkapi sesuai 10 soalmu)
-            if(document.getElementById('q1').value === "pos") score += 100; // Contoh skip untuk testing
+        function finish() {
+            let s = 0;
+            if(document.getElementById('q1').value === "pos") s += 34;
+            if(document.getElementById('q2').value.toLowerCase().includes("ethers")) s += 33;
+            if(document.getElementById('q3').value.toLowerCase() === "gas") s += 33;
 
-            if(score >= 80) {
+            if(s >= 60) {
                 const name = prompt("LULUS! Masukkan Nama Lengkap:");
                 if(name) {
-                    document.getElementById('user-display-name').innerText = name;
-                    
-                    // Otomatis Mengatur Tanggal Hari Ini
-                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    document.getElementById('date-display').innerText = new Date().toLocaleDateString('id-ID', options);
-                    
-                    document.getElementById('cert-id-display').innerText = "Verify: W3-" + Math.floor(100000 + Math.random() * 900000);
+                    document.getElementById('user-name').innerText = name;
+                    document.getElementById('cert-id').innerText = "ID: W3-" + Math.floor(Math.random()*900000 + 100000);
                     document.getElementById('exam-box').classList.add('hidden');
-                    document.getElementById('cert-section').classList.remove('hidden');
-                    document.getElementById('cert-section').style.display = 'flex';
+                    document.getElementById('cert-area').classList.remove('hidden');
                 }
-            } else {
-                const msg = document.getElementById('error-msg');
-                msg.innerText = `Skor: ${score}/100. Minimal 80 untuk lulus!`;
-                msg.classList.remove('hidden');
-            }
+            } else { alert("Skor kurang! Coba lagi."); }
         }
 
-        async function downloadCert() {
+        async function download() {
             const { jsPDF } = window.jspdf;
-            const element = document.getElementById('certificate');
-            const canvas = await html2canvas(element, { scale: 3 });
-            const imgData = canvas.toDataURL('image/png');
+            const canvas = await html2canvas(document.getElementById('certificate'), { scale: 2 });
             const pdf = new jsPDF('l', 'mm', [297, 210]);
-            pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
-            pdf.save("Web3_Certificate_White.pdf");
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
+            pdf.save("Web3_Certificate_CampCoding.pdf");
         }
     </script>
 </body>
