@@ -3,66 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul 3: Membangun DApp | CampCoding</title>
+    <title>Modul 3: DApp Builder | Web3 Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .step-card { border-left: 4px solid #10b981; }
-        .gradient-text { background: linear-gradient(135deg, #34d399, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Sora:wght@300;400;600&display=swap');
+        
+        body { 
+            background: #020617; 
+            color: white; 
+            font-family: 'Sora', sans-serif; 
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.8); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 4px; 
+        }
+        .neon-text { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
     </style>
 </head>
-<body class="p-5 md:p-10">
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="text-slate-400 hover:text-white mb-10 inline-block"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+<body class="p-8 antialiased">
+    <div class="max-w-3xl mx-auto">
+        <div class="mb-10 text-center">
+            <h1 class="text-4xl font-black mb-2 neon-text uppercase tracking-tighter" style="font-family: 'Orbitron'">Modul 3: DApp Builder</h1>
+            <p class="text-slate-500 text-sm">Menghubungkan Frontend ke Blockchain</p>
+        </div>
         
-        <div class="glass p-8 rounded-3xl mb-10">
-            <h1 class="text-4xl font-extrabold mb-4 italic gradient-text"># Modul 3: Membangun DApp Pertama 🚀</h1>
-            <p class="text-slate-400 text-lg">DApp (Decentralized Application) adalah aplikasi yang interface-nya mirip website biasa, tapi "otaknya" ada di Blockchain.</p>
-        </div>
+        <div class="glass p-6 mb-10 leading-relaxed text-slate-300 border-l-4 border-emerald-500">
+            <h2 class="text-xl font-bold text-white mb-4 italic underline">Web 2.0 vs Web 3.0 Architecture</h2>
+            <p class="mb-4">Dalam Web2, aplikasi terhubung ke database pusat (SQL/NoSQL). Dalam Web3, aplikasi (DApp) terhubung ke <b>Blockchain Node</b> melalui Provider seperti MetaMask.</p>
+            
+            <h3 class="font-bold text-emerald-400 mt-6 mb-2">Komponen Utama DApp:</h3>
+            <ul class="list-none space-y-3">
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <b>Smart Contract:</b> Logika bisnis di rantai (Solidity).</li>
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <b>Provider:</b> Jembatan (MetaMask/WalletConnect).</li>
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> <b>Library:</b> Ethers.js atau Web3.js untuk memanggil fungsi kontrak.</li>
+            </ul>
 
-        <div class="space-y-8">
-            <div class="glass p-8 rounded-2xl step-card">
-                <h2 class="text-2xl font-bold mb-4 text-emerald-400">1. Library Penting 🛠️</h2>
-                <p class="mb-4 text-slate-300 text-sm">Untuk menghubungkan Website ke Blockchain, kita butuh perantara:</p>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-slate-900 p-4 rounded-xl border border-white/5">
-                        <span class="text-white font-bold block mb-1">Ethers.js / Viem</span>
-                        <span class="text-xs text-slate-500">Library JavaScript untuk bicara dengan Smart Contract.</span>
-                    </div>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-white/5">
-                        <span class="text-white font-bold block mb-1">Metamask</span>
-                        <span class="text-xs text-slate-500">Dompet digital yang bertindak sebagai "Kunci" akses.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass p-8 rounded-2xl border-l-4 border-blue-500">
-                <h2 class="text-2xl font-bold mb-4 text-blue-400">2. Cara Kerja Koneksi 🔄</h2>
-                <div class="space-y-6">
-                    <div class="flex gap-4">
-                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">1</div>
-                        <p class="text-slate-300">User menekan tombol <strong>"Connect Wallet"</strong> di website.</p>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">2</div>
-                        <p class="text-slate-300">Website meminta izin akses alamat wallet ke extension browser (Metamask).</p>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-none w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold">3</div>
-                        <p class="text-slate-300">Setelah terhubung, Website bisa membaca data saldo atau mengirim transaksi ke Blockchain melalui provider.</p>
-                    </div>
-                </div>
+            <div class="mt-8 p-4 bg-emerald-950/30 border border-emerald-500/20 rounded">
+                <p class="text-xs italic text-emerald-300">"DApp bukan sekadar UI yang keren, tapi UI yang mampu melakukan transaksi on-chain menggunakan kunci privat pengguna secara aman."</p>
             </div>
         </div>
 
-       <div class="mt-12 flex justify-between items-center">
-    <a href="materi-2.html" class="text-slate-400 hover:text-white">← Kembali</a>
-    <a href="exam.html" class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-500/20">
-        Ambil Ujian Final →
-    </a>
-</div>
+        <div id="quiz-modul" class="glass p-8 border-b-4 border-emerald-500">
+            <h3 class="text-xl font-bold mb-6 text-white uppercase tracking-widest text-sm" style="font-family: 'Orbitron'">Mini Quiz (Gate to Final Exam)</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <p class="mb-2 font-semibold">1. Apa peran MetaMask dalam sebuah DApp?</p>
+                    <div class="grid grid-cols-1 gap-2 text-sm">
+                        <label class="flex items-center p-3 bg-slate-900 border border-slate-700 cursor-pointer hover:border-emerald-500 transition">
+                            <input type="radio" name="q1" value="wrong" class="mr-3"> Sebagai database utama
+                        </label>
+                        <label class="flex items-center p-3 bg-slate-900 border border-slate-700 cursor-pointer hover:border-emerald-500 transition">
+                            <input type="radio" name="q1" value="correct" class="mr-3"> Sebagai Provider & Dompet (Signer)
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="mb-2 font-semibold">2. Library mana yang digunakan untuk interaksi JavaScript ke Kontrak?</p>
+                    <input type="text" id="q2" class="w-full bg-slate-900 p-3 border border-slate-700 rounded outline-none focus:border-emerald-500" placeholder="Ketik: ethers.js / react.js / node.js">
+                </div>
+            </div>
+
+            <button onclick="cekLulus()" class="mt-10 bg-emerald-600 w-full py-4 font-black hover:bg-emerald-500 transition uppercase tracking-widest text-sm">
+                VERIFIKASI SKOR & UNLOCK EXAM
+            </button>
+            
+            <p id="status" class="mt-6 text-center font-bold text-lg"></p>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="materi-2.html" class="text-slate-500 hover:text-white transition text-xs uppercase tracking-widest underline">← Kembali ke Modul 2</a>
+        </div>
     </div>
+
+    <script>
+        function cekLulus() {
+            let skor = 0;
+            
+            // Cek Soal 1 (Radio)
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if(q1 && q1.value === "correct") skor += 50;
+
+            // Cek Soal 2 (Text)
+            const q2 = document.getElementById('q2').value.toLowerCase();
+            if(q2.includes("ethers") || q2.includes("web3.js")) skor += 50;
+
+            const status = document.getElementById('status');
+            
+            if(skor === 100) {
+                status.innerHTML = `<i class="fas fa-unlock mr-2"></i> SKOR: 100/100<br><span class="text-sm font-normal">Sempurna! Kamu telah siap untuk Final Professional Exam.</span>`;
+                status.className = "mt-6 text-center font-bold text-emerald-400 animate-pulse";
+                
+                // Redirect ke Final Exam setelah 2 detik
+                setTimeout(() => {
+                    window.location.href = "exam.html";
+                }, 2500);
+            } else {
+                status.innerHTML = `<i class="fas fa-lock mr-2"></i> SKOR: ${skor}/100<br><span class="text-sm font-normal">Jawaban salah. Baca materi di atas dengan teliti!</span>`;
+                status.className = "mt-6 text-center font-bold text-red-500";
+            }
+        }
+    </script>
 </body>
 </html>
